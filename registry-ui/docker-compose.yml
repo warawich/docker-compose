@@ -1,0 +1,12 @@
+version: '3.0'
+
+services:
+    registry-ui:
+      container_name: registry-ui
+      image: quiq/docker-registry-ui
+      volumes: 
+        - "/opt/quiq/config.yml:/opt/config.yml"
+        - "/opt/quiq/data:/opt/data"
+      ports:
+        - "8000:8000"
+      restart: always
