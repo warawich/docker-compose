@@ -1,11 +1,16 @@
-version: '3.0'
+version: '2'
 
 services:
     registry:
+      environment:
+        REGISTRY_AUTH: 'htpasswd'
+        REGISTRY_AUTH_HTPASSWD_REALM: 'Registry Realm'
+        REGISTRY_AUTH_HTPASSWD_PATH: '/opt/htpasswd'
       container_name: registry
       image: registry
-      volumes: 
+      volumes:
         - "/opt/images:/var/lib/registry"
+        - "/opt/registry/htpasswd/htpasswd:/opt/htpasswd"
       ports:
         - "5000:5000"
       restart: always
